@@ -9,8 +9,8 @@ A **full-stack investment analytics platform** built with FastAPI and Next.js th
 - **Real-time Portfolio Analytics** — Track holdings, gains/losses, and performance
 - **Performance Benchmarking** — Compare against Nifty 50 & Gold
 - **Sector & Market Cap Analysis** — Visual allocation breakdowns
-- **Excel Integration** — Upload `.xlsx` files directly
-- **Fast API** — Async FastAPI backend with Polars data processing
+- **Excel Integration** — Reads `.xlsx` files directly
+- **Fast API** — Async FastAPI backend with Polars data processing and pandas sa fallback processing
 - **Modern Frontend** — Next.js dashboard with interactive charts
 
 ## 🗂 Excel File Structure
