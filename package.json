@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "fastapi-dev": "cd src && python -m uvicorn api.main:app --reload --port 8000",
+    "fastapi-dev": "pip install -r requirements.txt && cd src && python -m uvicorn api.main:app --reload --port 8000",
     "dev": "next dev --turbopack",
     "dev:full": "concurrently \"npm run dev\" \"npm run fastapi-dev\"",
     "build": "next build",

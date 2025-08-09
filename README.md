@@ -1,166 +1,105 @@
 # 📊 Portfolio Analytics Dashboard
 
-A **full-stack investment analytics platform** with:
+A **full-stack investment analytics platform** built with FastAPI and Next.js that transforms Excel portfolio data into interactive dashboards.
 
-- **FastAPI** backend for real-time analytics
-- **Pandas + Polars** for blazing-fast portfolio data processing
-- **Next.js** frontend for rich interactive dashboards
-- **Excel integration** so you can upload portfolio files directly
-- **Real-time Portfolio Analytics** — Get up-to-date holdings, sector allocation, and risk insights
-- **Performance Benchmarking** — Compare portfolio performance with **Nifty 50** & **Gold**
-- **Allocation Analysis** — Breakdown by sector & market capitalization
-- **Excel Upload Support** — No manual input, just upload your `.xlsx` file
-- **Top Performer Tracking** — Spot the best & worst assets instantly
-- **Scalable API** — FastAPI async backend optimized for speed
-- **Frontend Ready** — Designed to plug directly into any **Next.js / React** app
+<img width="1750" height="917" alt="Screenshot 2025-08-09 at 6 36 44 PM" src="https://github.com/user-attachments/assets/f2f72497-6c43-4154-9e8c-eeec7acb0e57" />
 
-***
+## 🚀 Features
+
+- **Real-time Portfolio Analytics** — Track holdings, gains/losses, and performance
+- **Performance Benchmarking** — Compare against Nifty 50 & Gold
+- **Sector & Market Cap Analysis** — Visual allocation breakdowns
+- **Excel Integration** — Upload `.xlsx` files directly
+- **Fast API** — Async FastAPI backend with Polars data processing
+- **Modern Frontend** — Next.js dashboard with interactive charts
 
 ## 🗂 Excel File Structure
 
-Your Excel file (e.g., `Sample Portfolio.xlsx`) should have these sheets:
+Your Excel file should contain these sheets:
 
-| Sheet Name             | Data                                                      |
-|------------------------|-----------------------------------------------------------|
-| **Holdings**           | Stock names, symbols, quantity, buy price, sector         |
-| **Historical_Performance** | Date-wise portfolio & benchmark returns              |
-| **Sector_Allocation**  | Sector distribution                                       |
-| **Market_Cap**         | Market capitalization classification                      |
-| **Summary**            | Total invested, total gain/loss, diversification score    |
-| **Top_Performers**     | Best & worst performers                                   |
+| Sheet Name | Description |
+|------------|-------------|
+| **Holdings** | Stock symbols, quantities, prices, sectors |
+| **Historical_Performance** | Portfolio performance over time |
+| **Sector_Allocation** | Distribution by sectors |
+| **Market_Cap** | Market capitalization breakdown |
+| **Summary** | Key metrics and totals |
+| **Top_Performers** | Best and worst performing stocks |
 
-***
+## 🏃‍♂️ Quick Start
 
-## 🚀 Quick Start
+### Prerequisites
+- Python 3.8+
+- Node.js 18+
+- pnpm (recommended)
 
-### 1️⃣ Prerequisites
-
-- **Python** 3.8+
-- **Node.js** 18+
-- **pnpm** (recommended) or npm
-- Excel `.xlsx` file with portfolio data
-
-***
-
-### 2️⃣ Clone & Setup
+### 1. Install Dependencies
 
 ```bash
-git clone 
-cd portfolio-analytics
-```
-
-***
-
-### 3️⃣ Backend Setup (FastAPI)
-
-```bash
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
+# Backend dependencies
 pip install fastapi uvicorn polars pandas openpyxl
+
+# Frontend dependencies
+pnpm install
 ```
 
-Run backend:
+### 2. Start the Backend
 
 ```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+uvicorn main:app --reload --port 8000
 ```
 
-API will be live at:
-- **Base URL:** `http://localhost:8000`
-- **Docs:** `http://localhost:8000/docs`
+API available at: `http://localhost:8000`
 
-***
-
-### 4️⃣ Frontend Setup (Next.js)
+### 3. Start the Frontend
 
 ```bash
-cd frontend
-pnpm install       # or npm install
 pnpm run dev
 ```
 
-Frontend will run at:
-- `http://localhost:3000`
+Dashboard available at: `http://localhost:3000`
 
-***
+### 4. Full Development Mode
+
+```bash
+pnpm run dev:full  # Runs both backend and frontend
+```
 
 ## 📡 API Endpoints
 
-| Method | Endpoint                          | Description                             |
-|--------|-----------------------------------|-----------------------------------------|
-| GET    | `/api/portfolio/holdings`         | Get all holdings with current values    |
-| GET    | `/api/portfolio/allocation`       | Sector & market cap allocation          |
-| GET    | `/api/portfolio/performance`      | Past performance vs benchmarks          |
-| GET    | `/api/portfolio/summary`          | Summary with metrics, risk, top picks   |
-| GET    | `/api/portfolio/marketcap`        | Market capitalization breakdown         |
+| Endpoint | Description |
+|----------|-------------|
+| `/api/portfolio/holdings` | All portfolio holdings |
+| `/api/portfolio/allocation` | Sector & market cap breakdown |
+| `/api/portfolio/performance` | Historical performance data |
+| `/api/portfolio/summary` | Portfolio summary & metrics |
 
-***
+
+## 🛠 Tech Stack
+
+- **Backend:** FastAPI, Polars, Pandas
+- **Frontend:** Next.js, React, TypeScript
+- **Data:** Excel integration with OpenPyXL
+- **UI:** Tailwind CSS, Recharts
 
 ## 📁 Project Structure
 
 ```
 portfolio-analytics/
-├── 📂 backend/               # FastAPI backend
-│   ├── main.py               # API entry point
-│   ├── routes/               # All API endpoints
-│   ├── services/             # Data processing functions
-│   └── data/                 # Excel sample files
-│
-├── 📂 frontend/              # Next.js frontend
-│   ├── components/           # React UI components
-│   ├── pages/                # Frontend pages
-│   └── styles/               # Styling (CSS/SCSS)
-│
-├── README.md
-└── requirements.txt
+├── data/                # Excel portfolio files
+├── docs/                # Documentation
+├── public/              # Static assets
+├── src/
+│   ├── api/             # FastAPI backend logic
+│   ├── app/             # Next.js app directory
+│   ├── components/      # React UI components
+│   ├── hooks/           # Custom React hooks
+│   └── lib/             # Utility functions
+├── package.json         # Frontend dependencies & scripts
+├── requirements.txt     # Python dependencies
+└── README.md
 ```
 
-***
+---
 
-## 🛠 Tech Stack
-
-| Layer         | Technology |
-|---------------|------------|
-| Backend       | FastAPI, Uvicorn |
-| Data          | Pandas, Polars, OpenPyXL |
-| Frontend      | Next.js, React, TypeScript |
-| Dev Tools     | Node.js, pnpm, Python venv |
-
-***
-
-## 🏭 Deployment
-
-**Backend (Production)**
-
-```bash
-gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
-```
-
-**Frontend (Build & Serve)**
-
-```bash
-pnpm build
-pnpm start
-```
-
-***
-
-## 🤝 Contributing
-
-1. **Fork** this repository
-2. **Create** a new branch: `git checkout -b feature/my-feature`
-3. **Commit** changes: `git commit -m "Add my feature"`
-4. **Push**: `git push origin feature/my-feature`
-5. **Open** a Pull Request 🚀
-
-***
-
-## 🧠 Summary
-
-This project helps **investors & developers** turn raw Excel portfolio files into **interactive, real-time analytics dashboards** — powered by Python’s data processing and Next.js's UI capabilities.
-
-***
-
-⭐ If you like this, don’t forget to [start the repo]()
-
-***
+**Ready to turn your Excel portfolio into a powerful analytics dashboard!** 🚀
